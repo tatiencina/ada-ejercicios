@@ -6,6 +6,6 @@
 
 * 2.10 Costos Bus
   * Autobus. Versión con private methods (Tati).
-  * Versión con varias clases (Tati).
+  * Autobus2. Versión con varias clases (Tati).
 * 2.14 Envios (Isa, Tati, Kim, Dani).
  
