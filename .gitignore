@@ -4,7 +4,7 @@
 *.project
 
 # Folders
-*/settings
+*/.settings
 */doc
 
 # Log file
