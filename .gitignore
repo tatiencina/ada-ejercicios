@@ -3,8 +3,9 @@
 *.classpath
 *.project
 
-/.settings
-/.doc
+# Folders
+*/settings
+*/doc
 
 # Log file
 *.log
