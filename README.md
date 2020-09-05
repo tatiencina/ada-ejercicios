@@ -4,6 +4,7 @@
 
 #### Lista de ejercicios resueltos:
 
+* 2.03 Lapices. Versión con validación (Tati).
 * 2.10 Costos Bus
   * Autobus. Versión con private methods (Tati).
   * Autobus2. Versión con varias clases (Tati).
