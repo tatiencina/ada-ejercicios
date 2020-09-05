@@ -5,7 +5,7 @@
 
 # Folders
 *.settings/
-*doc/
+* doc/.
 
 # Log file
 *.log
