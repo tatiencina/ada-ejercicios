@@ -1,6 +1,11 @@
 package ejercicios;
 
 import java.util.Scanner;
+/* 
+ * Necesito calcular el monto de la compra de lápices
+ * El valor unitario es 90.0, pero si compran más de 1000 el 
+ * precio cambia a 85.0
+ */
 
 public class Ejercicio203 {
 	private static final float PRECIO_NORMAL = 90.0f;
