@@ -16,12 +16,17 @@ public class Ejercicio992 {
 	public static void main(String[] args) {
 		int cantParadas = 0;
 
+		int paradaCercana = 0;
+
 		double totalDistancias = 0;
+
+		double minKm = -1;
 
 		System.out.println("Bienvenide a su calculadora de paradas!");
 		System.out.println("Para continuar, ingrese la cantidad de paradas que desea realizar");
 		Scanner sc = new Scanner(System.in);
 		cantParadas = sc.nextInt();
+		// Cantidad de paradas
 
 		while (cantParadas <= 0) {
 			System.out.println("La cantidad de paradas tiene que ser mayor que 0.");
@@ -38,9 +43,14 @@ public class Ejercicio992 {
 		for (int i = 0; i < distancias.length; i++) {
 			System.out.println(
 					"Ingrese ahora la distancia que desea recorrer hasta la parada n°" + (i + 1) + " (en kms).");
-			distancias[i] = 0;
 			distancias[i] = sc.nextDouble();
-			totalDistancias = totalDistancias + distancias[i];
+			totalDistancias += distancias[i];
+
+			if (minKm == -1 || distancias[i] < minKm) {
+				paradaCercana = i + 1;
+				minKm = distancias[i];
+
+			}
 
 		}
 
@@ -48,7 +58,8 @@ public class Ejercicio992 {
 		double distanciaFinal = sc.nextDouble();
 		System.out.println("La distancia total es " + (totalDistancias + distanciaFinal) + "kms");
 		System.out.println("La distancia promedio entre paradas es: " + (totalDistancias / cantParadas) + "kms");
-
+		System.out.println("La menor distancia entre paradas es de: " + minKm + "kms, entre las paradas "
+				+ (paradaCercana - 1) + " y " + (paradaCercana));
 		sc.close();
 
 	}
