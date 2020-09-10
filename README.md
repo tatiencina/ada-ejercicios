@@ -10,5 +10,5 @@
   * Autobus2. Versión con varias clases (Tati).
 * 2.14 📦Envios (Isa, Tati, Kim, Dani).
 * 99.1 :dollar: Facturación (Tati).
-* 99.2 :straight_ruler: Distancias con validación (Tati).
+* 99.2 :straight_ruler: Distancias. Versión con validación (Tati).
  
