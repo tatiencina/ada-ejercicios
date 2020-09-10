@@ -43,10 +43,8 @@ public class Ejercicio991 {
 				caja = sc.nextInt();
 			}
 
-			// if (caja <= cajas.length && caja >= 1) {
 			totalFacturas = totalFacturas + importe;
 			cajas[caja - 1] = cajas[caja - 1] + 1;
-			// }
 
 			System.out.println("Ingrese el importe de la factura ( 0 para terminar )");
 			importe = sc.nextDouble();
