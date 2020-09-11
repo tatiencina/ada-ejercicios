@@ -34,6 +34,7 @@ public class Ejercicio992 {
 			cantParadas = sc.nextInt();
 		}
 
+		// guardo en el vector las distancias de cada parada
 		double distancias[] = new double[cantParadas];
 		for (int i = 0; i < distancias.length; i++) {
 			distancias[i] = 0;
