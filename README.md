@@ -13,4 +13,5 @@
 * 99.2 :straight_ruler: Distancias. 
   * Versión con validación (Tati).
   * Gráfico. Versión con gráfico (Clase + Tati).
+* 99.3 :ticket: Butacas con métodos y validación.
  
