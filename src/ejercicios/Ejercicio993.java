@@ -55,32 +55,53 @@ public class Ejercicio993 {
 		solicitudAsiento = sc.nextInt();
 
 		while (solicitudAsiento != 99) {
-			if (esValido(solicitudAsiento)) {
-				System.out.println("Butaca: " + (solicitudAsiento)/* + "=" + (butacas[solicitudAsiento]) */);
+			if (!teatroLleno(butacas)) {
 
-				if (asientoDisponible(butacas, solicitudAsiento)) {
-					contador = venderAsiento(butacas, solicitudAsiento, contador);
+				if (esValido(solicitudAsiento)) {
+					System.out.println("Butaca: " + (solicitudAsiento));
 
+					if (asientoDisponible(butacas, solicitudAsiento)) {
+						contador = venderAsiento(butacas, solicitudAsiento, contador);
+
+					} else {
+						System.out.println("Butaca no disponible. Seleccione otra ubicación");
+						System.out.println();
+					}
+
+					System.out.println("Para adquirir otra localidad, ingrese el número de butaca que desea .");
+					System.out.println("De lo contrario, ingrese 99 para terminar.");
+					solicitudAsiento = sc.nextInt();
 				} else {
-					System.out.println("Butaca no disponible. Seleccione otra ubicación");
-					System.out.println();
+
+					System.out
+							.println("Ingresó un numero de butaca inválido. Por favor seleccione un asiento entre 1 y "
+									+ CANT_BUTACAS);
+					solicitudAsiento = sc.nextInt();
+
 				}
 
-				System.out.println("Para adquirir otra localidad, ingrese el número de butaca que desea .");
-				System.out.println("De lo contrario, ingrese 99 para terminar.");
-				solicitudAsiento = sc.nextInt();
-			} else {
-
-				System.out.println("Ingresó un numero de butaca inválido. Por favor seleccione un asiento entre 1 y "
-						+ CANT_BUTACAS);
-				solicitudAsiento = sc.nextInt();
-
 			}
+
+			else {
+				System.out.println("Todas las localidades fueron vendidas!");
+				dibujarSubrayado(50, "*");
+				solicitudAsiento = 99;
+			}
+
 		}
 		sc.close();
 		dibujarSubrayado(50, "*");
 		return contador;
 
+	}
+
+	private static boolean teatroLleno(int butacas[]) {
+		boolean estaLleno = true;
+		for (int i = 0; i < butacas.length; i++) {
+			estaLleno = estaLleno && butacas[i] == 1;
+
+		}
+		return estaLleno;
 	}
 
 	private static int venderAsiento(int[] butacas, int solicitudAsiento, int contador) {
