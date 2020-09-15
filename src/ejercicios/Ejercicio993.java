@@ -21,13 +21,13 @@ public class Ejercicio993 {
 	}
 
 	private static void darBienvenida(String mensajeBienvenida) {
-		dibujarSubrayado(mensajeBienvenida.length(), "=");
+		dibujarDivisor(mensajeBienvenida.length(), "=");
 		System.out.println(mensajeBienvenida.toUpperCase());
-		dibujarSubrayado(mensajeBienvenida.length(), "=");
+		dibujarDivisor(mensajeBienvenida.length(), "=");
 		System.out.println();
 	}
 
-	private static void dibujarSubrayado(int longitud, String simbolo) {
+	private static void dibujarDivisor(int longitud, String simbolo) {
 		for (int i = 0; i < longitud; i++) {
 			System.out.print(simbolo);
 
@@ -83,13 +83,13 @@ public class Ejercicio993 {
 
 			else {
 				System.out.println("Todas las localidades fueron vendidas!");
-				dibujarSubrayado(50, "*");
+				dibujarDivisor(50, "*");
 				solicitudAsiento = 99;
 			}
 
 		}
 		sc.close();
-		dibujarSubrayado(50, "*");
+		dibujarDivisor(50, "*");
 		return contador;
 
 	}
@@ -126,18 +126,35 @@ public class Ejercicio993 {
 	}
 
 	private static void mostrarButacas(int contador, int[] butacas) {
+		/*
+		 * Muestro el total de butacas vendidas y disponibles Agrego método para dibujar
+		 * el teatro
+		 */
 		System.out.println("Total de butacas vendidas:" + contador);
+		System.out.print("Asientos ocupados: ");
+		System.out.println();
 		for (int j = 0; j < butacas.length; j++) {
 			if (butacas[j] == 1) {
-				System.out.println("Butaca: " + (j + 1));
+				System.out.print(" " + (j + 1) + (" "));
+				if ((j + 1) % 10 == 0) {
+					System.out.println();
+
+				}
 			}
+
 		}
+		System.out.println();
 		System.out.println("Total de butacas disponibles: " + (CANT_BUTACAS - contador));
-		dibujarSubrayado(50, "*");
+		dibujarDivisor(50, "*");
 		dibujarTeatro(butacas);
 	}
 
 	private static void dibujarTeatro(int butacas[]) {
+		/*
+		 * Dibujo el teatro para la cantidad de asientos / cantiadad de filas Voy a
+		 * repetir el dibujo la cantidad de filas que tenga Multiplico por 10 para
+		 * saltar de fila
+		 */
 		System.out.println("SALA");
 		System.out.println();
 		for (int i = 0; i < CANT_FILAS; i++) {
