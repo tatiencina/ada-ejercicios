@@ -17,7 +17,6 @@ public class Ejercicio993 {
 		int butacas[] = inicializarButacas();
 		int contador = venderButacas(butacas);
 		mostrarButacas(contador, butacas);
-		dibujarTeatro(butacas);
 
 	}
 
@@ -135,6 +134,7 @@ public class Ejercicio993 {
 		}
 		System.out.println("Total de butacas disponibles: " + (CANT_BUTACAS - contador));
 		dibujarSubrayado(50, "*");
+		dibujarTeatro(butacas);
 	}
 
 	private static void dibujarTeatro(int butacas[]) {
