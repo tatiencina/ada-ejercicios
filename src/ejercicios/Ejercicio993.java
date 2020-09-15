@@ -143,9 +143,9 @@ public class Ejercicio993 {
 		for (int i = 0; i < CANT_FILAS; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (butacas[10 * i + j] == 0) {
-					System.out.print(" *");
+					System.out.print(" o");
 				} else
-					System.out.print(" +");
+					System.out.print(" x");
 
 			}
 			System.out.println();
