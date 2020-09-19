@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Juego del ahorcado
  */
 
-public class Ejercicio995 {
+public class Ejercicio995Ahorcado {
 
 	private static final int MIN_PALABRA = 4;
 	private static final int MAX_PALABRA = 10;

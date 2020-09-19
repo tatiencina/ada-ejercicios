@@ -2,7 +2,7 @@ package ejercicios;
 
 import java.util.Scanner;
 
-public class Ejercicio214 {
+public class Ejercicio214Envios {
 	private static final float COSTO_1 = 11.0f;
 	private static final float COSTO_2 = 10.0f;
 	private static final float COSTO_3 = 12.0f;

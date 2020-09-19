@@ -11,7 +11,7 @@ import java.util.Scanner;
  * y el promedio de todas las facturas.
  */
 
-public class Ejercicio991 {
+public class Ejercicio991Facturacion {
 
 	private static final int CANT_CAJAS = 4;
 

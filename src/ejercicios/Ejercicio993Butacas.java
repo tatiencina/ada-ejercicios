@@ -8,7 +8,7 @@ import java.util.Scanner;
 //hasta que se ingrese asiento numero 99
 //Listar los asientos vendidos
 
-public class Ejercicio993 {
+public class Ejercicio993Butacas {
 	private static final int CANT_BUTACAS = 50;
 	private static final int CANT_FILAS = CANT_BUTACAS / 10;
 

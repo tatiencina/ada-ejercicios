@@ -7,7 +7,7 @@ import java.util.Scanner;
  * precio cambia a 85.0
  */
 
-public class Ejercicio203 {
+public class Ejercicio203Lapices {
 	private static final float PRECIO_NORMAL = 90.0f;
 	private static final float PRECIO_MAYORISTA = 85.0f;
 	private static final int MINIMO_MAYORISTA = 1000;

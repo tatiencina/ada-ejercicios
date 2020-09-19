@@ -12,7 +12,7 @@ import java.util.Scanner;
  * 
  */
 
-public class Ejercicio992 {
+public class Ejercicio992Distancias {
 	public static void main(String[] args) {
 		int cantParadas = 0;
 

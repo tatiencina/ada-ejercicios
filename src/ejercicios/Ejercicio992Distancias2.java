@@ -2,7 +2,7 @@ package ejercicios;
 
 import java.util.Scanner;
 
-public class Ejercicio992Grafico {
+public class Ejercicio992Distancias2 {
 	public static void main(String[] args) {
 		System.out.println("Sistema de estaciones en ruta");// atajo sysout
 		System.out.println("============================");

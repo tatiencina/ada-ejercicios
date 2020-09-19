@@ -1,5 +1,6 @@
 package ejercicios;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -9,7 +10,7 @@ import java.util.Scanner;
  * Se deben ingresar los clientes por número (cliente = 0 para finalizar) 
  */
 
-public class Ejercicio994 {
+public class Ejercicio994Servicios {
 	// Constantes
 	private static final int PRECIO_TELEFONIA = 10;
 	private static final int PRECIO_BANDA_ANCHA = 15;
@@ -52,12 +53,14 @@ public class Ejercicio994 {
 		int cantClientes = 0;
 		int factServicio[] = new int[CANT_SERVICIOS];
 
-//		ArrayList<Integer> clientes = new ArrayList<Integer>();
-//			for (int i = 0; i < clientes.length; i++) {
-//				clientes[i] = 0;
-//			}
+		ArrayList<Integer> listadoClientes = new ArrayList<Integer>();
+		listadoClientes.add(numCliente);
 
 		while (numCliente != SENTINEL) {
+			if ((listadoClientes.get(numCliente)) == null) {
+				listadoClientes.set(numCliente, 1);
+				cantClientes += 1;
+			}
 
 			System.out.println("Ingrese el servicio que desea adquirir:");
 			System.out.println("Telefonía --> 1 // Banda ancha --> 2 // Televisión --> 3");
@@ -82,8 +85,6 @@ public class Ejercicio994 {
 					break;
 				}
 
-//				if(clienteNuevo(numCliente))
-				cantClientes += 1;
 				dibujarDivisor(70, "=");
 				System.out.println("Ingrese el número de cliente");
 				System.out.println("Para finalizar el servicio, ingrese 0. ");
@@ -102,12 +103,10 @@ public class Ejercicio994 {
 		return cantClientes;
 	}
 
-//	private static boolean clienteNuevo(int numCliente, Integer[] clientes) {
-//		return   ();
-//		
-//			
-//		
-//		;
+//	private static boolean verificarClienteNuevo(int numCliente, ArrayList<Integer> listadoClientes) {
+//		boolean esNuevo = (listadoClientes.get(numCliente) == 0);
+//		return esNuevo;
+//
 //	}
 
 	private static boolean servicioValido(int servicioElegido) {
