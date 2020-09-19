@@ -30,7 +30,7 @@ public class Ejercicio995Ahorcado {
 		System.out.println("Vamos a empezar! Primero, pedile a un amigue que ingrese una palabra para que adivines.");
 		System.out.println("No mires!");
 		Scanner sc = new Scanner(System.in);
-		String palabra = sc.next().toUpperCase();
+		String palabra = sc.next();
 		while (!esPalabraValida(palabra)) {
 			System.out.println("Ups! Palabra inválida. Ingresa una nueva palabra, que tenga entre 4 y 10 letras.");
 			palabra = sc.next();
@@ -38,7 +38,7 @@ public class Ejercicio995Ahorcado {
 		dibujarDivisor(100, "*");
 		System.out.println("Vamos a jugar!");
 //		sc.close();
-		return palabra;
+		return palabra.toUpperCase();
 	}
 
 	private static boolean esPalabraValida(String palabra) {
@@ -54,15 +54,17 @@ public class Ejercicio995Ahorcado {
 
 		System.out.println("Ingresá una letra!");
 		Scanner sc = new Scanner(System.in);
-		String letra = (sc.nextLine().toUpperCase());
+		String letra = sc.nextLine();
 
 		while (aciertos < palabra.length() && errores != MAX_ERRORES) {
-			int posicion = palabra.indexOf(letra); // si la letra no existe devuelve -1, si no, devuelve la posición
+			int posicionLetra = palabra.indexOf(letra.toUpperCase()); // si la letra no existe devuelve -1, si no,
+																		// devuelve la
+			// posición
 			// buscar letra en la palabra
 
-			if (posicion != -1) {
+			if (posicionLetra != -1) {
 				// si existe, contar acierto
-				resultado[posicion] = posicion != -1;
+				resultado[posicionLetra] = posicionLetra != -1;
 				aciertos++;
 
 			} else {
@@ -85,17 +87,19 @@ public class Ejercicio995Ahorcado {
 
 			if (aciertos == palabra.length()) {
 				System.out.println("GANASTE!!");
-			}
-
-			if (errores == MAX_ERRORES) {
-				System.out.println("Oh no, ya no quedan mas intentos. Perdiste T.T");
-
 			} else {
 
-				System.out.println("Ingresá una letra!");
-				letra = sc.next().toUpperCase();
+				if (errores == MAX_ERRORES) {
+					System.out.println("Oh no, ya no quedan mas intentos. Perdiste T.T");
 
+				} else {
+
+					System.out.println("Ingresá una letra!");
+					letra = sc.next().toUpperCase();
+
+				}
 			}
+
 		}
 
 		sc.close();
@@ -105,7 +109,7 @@ public class Ejercicio995Ahorcado {
 	private static void mostrarPuntos(int errores) {
 		// calculo el puntaje en base a intentos. 1 es maximo 10 es 0
 		int puntaje = MAX_PALABRA - errores;
-		System.out.println("Hiciste " + puntaje + "puntos");
+		System.out.println("Hiciste " + puntaje + " puntos");
 
 	}
 

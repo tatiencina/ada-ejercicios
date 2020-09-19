@@ -11,53 +11,102 @@ import java.util.Scanner;
 public class Ejercicio996Menu {
 
 	private static final int CANT_DIAS = 5;
-	private static final int SENTINEL = 0;
+	private static final int SENTINEL = 4;
+	private static float recaudacion[] = new float[CANT_DIAS];
 
 	public static void main(String[] args) {
 		darBienvenida("Bienvenido a su registro de recaudaciones.");
-		menuDeFunciones();
-		desplegarDatos();
+		ofrecerOpciones();
 
 	}
 
-	private static void menuDeFunciones() {
+	private static void ofrecerOpciones() {
 
-		desplegarMenu();
-
-	}
-
-	private static void desplegarMenu() {
-		System.out.println("Seleccione operación a realizar:");
-		System.out.println("1) Agregar 2)Listar 3) Modificar 4) Salir");
-		Scanner sc = new Scanner(System.in);
-		int seleccion = sc.nextInt();
+		int seleccion = mostrarMenu();
 
 		while (!validarSeleccion(seleccion)) {
 			System.out.println("Opción inválida");
-			System.out.println("Seleccione operación a realizar:");
-			System.out.println("1) Agregar 2)Listar 3) Modificar 4) Salir");
-			seleccion = sc.nextInt();
+			seleccion = mostrarMenu();
 		}
 		while (seleccion != SENTINEL) {
 			switch (seleccion) {
 			case 1:
 				agregarRecaudaciones();
+				break;
+
+			case 2:
+				listarRecaudacion(recaudacion);
+				break;
+
+			case 3:
+				modificarDatosIngresados();
+				break;
 
 			}
+			seleccion = mostrarMenu();
+
+		}
+		salir();
+
+	}
+
+	private static void salir() {
+		System.out.println("Gracias por utilizar nuestro servicio");
+
+	}
+
+	private static void modificarDatosIngresados() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Ingrese el día cuya recaudación desea modificar ");
+		int i = sc.nextInt();
+		// validacion dia existente
+		while (i < 0 || i > CANT_DIAS) {
+			System.out.println("Valor inválido. Por favor ingrese el día cuya recaudación desea modificar");
+			i = sc.nextInt();
+		}
+		System.out.println("Ingrese nueva recaudación del día " + i);
+		recaudacion[i - 1] = sc.nextFloat();
+
+	}
+
+	private static void listarRecaudacion(float[] recaudacion) {
+		for (int i = 0; i < CANT_DIAS; i++) {
+
+			System.out.println("La recaudación del día " + (i + 1) + " es $" + recaudacion[i] + ".");
+
 		}
 
 	}
 
 	private static void agregarRecaudaciones() {
-		for (int i = 0; i < CANT_DIAS - 1; i++) {
-			System.out.println("Ingrese la recaudación total del día " + (i) + ".");
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < CANT_DIAS; i++) {
+
+			System.out.println("Ingrese la recaudación total del día " + (i + 1) + ".");
+			recaudacion[i] = sc.nextFloat();
+			System.out.println("Monto ingresado exitosamente");
+			System.out.println();
 
 		}
 
 	}
 
+	private static int mostrarMenu() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Menú");
+		dibujarDivisor(70, "=");
+		System.out.println("Seleccione operación a realizar:");
+		System.out.println("1) Agregar");
+		System.out.println("2) Listar");
+		System.out.println("3) Modificar ");
+		System.out.println("4) Salir");
+		int seleccion = sc.nextInt();
+		return seleccion;
+
+	}
+
 	private static boolean validarSeleccion(int seleccion) {
-		return (seleccion > 4 || seleccion < 0);
+		return (seleccion <= 4 || seleccion > 0);
 
 	}
 
