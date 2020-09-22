@@ -14,4 +14,6 @@
   * Versión con validación (Tati).
   * Gráfico. Versión con gráfico (Clase + Tati).
 * 99.3 :ticket: Butacas con métodos y validación.
+* 99.4 Servicios
+* 99.5 Ahorcado
  
