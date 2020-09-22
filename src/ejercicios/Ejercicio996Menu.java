@@ -16,17 +16,17 @@ public class Ejercicio996Menu {
 
 	public static void main(String[] args) {
 		darBienvenida("Bienvenido a su registro de recaudaciones.");
-		ofrecerOpciones();
+		menuDeOpciones();
 
 	}
 
-	private static void ofrecerOpciones() {
+	private static void menuDeOpciones() {
 
-		int seleccion = mostrarMenu();
+		int seleccion = mostrarOpciones();
 
 		while (!validarSeleccion(seleccion)) {
 			System.out.println("Opción inválida");
-			seleccion = mostrarMenu();
+			seleccion = mostrarOpciones();
 		}
 		while (seleccion != SENTINEL) {
 			switch (seleccion) {
@@ -39,11 +39,11 @@ public class Ejercicio996Menu {
 				break;
 
 			case 3:
-				modificarDatosIngresados();
+				modificarRecaudacion();
 				break;
 
 			}
-			seleccion = mostrarMenu();
+			seleccion = mostrarOpciones();
 
 		}
 		salir();
@@ -55,7 +55,7 @@ public class Ejercicio996Menu {
 
 	}
 
-	private static void modificarDatosIngresados() {
+	private static void modificarRecaudacion() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese el día cuya recaudación desea modificar ");
 		int i = sc.nextInt();
@@ -91,8 +91,9 @@ public class Ejercicio996Menu {
 
 	}
 
-	private static int mostrarMenu() {
+	private static int mostrarOpciones() {
 		Scanner sc = new Scanner(System.in);
+		dibujarDivisor(70, "=");
 		System.out.println("Menú");
 		dibujarDivisor(70, "=");
 		System.out.println("Seleccione operación a realizar:");
@@ -100,6 +101,7 @@ public class Ejercicio996Menu {
 		System.out.println("2) Listar");
 		System.out.println("3) Modificar ");
 		System.out.println("4) Salir");
+		dibujarDivisor(70, "=");
 		int seleccion = sc.nextInt();
 		return seleccion;
 
@@ -111,9 +113,9 @@ public class Ejercicio996Menu {
 	}
 
 	private static void darBienvenida(String mensajeBienvenida) {
-		dibujarDivisor(mensajeBienvenida.length(), "=");
+		dibujarDivisor(mensajeBienvenida.length(), "*");
 		System.out.println(mensajeBienvenida.toUpperCase());
-		dibujarDivisor(mensajeBienvenida.length(), "=");
+		dibujarDivisor(mensajeBienvenida.length(), "*");
 		System.out.println();
 	}
 
