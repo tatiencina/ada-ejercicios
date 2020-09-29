@@ -14,6 +14,7 @@ public class Ejercicio999TaTeTi {
 	private static final int ROWS = 3;
 	private static final int COLS = 3;
 	private static final int MAX_TURNS=9;
+	private static String choice = "Y";
 
 	public static void main(String[] args) {
 		String[][] tablero = new String[ROWS][COLS];
@@ -25,28 +26,33 @@ public class Ejercicio999TaTeTi {
 	}
 
 	private static void StartGame(String[][]tablero) {
-		String choice = "Y";
+
 		while (continuePlaying(choice)) {
 			startBoard(tablero);
 			playGame(tablero);
 			drawLine(70,"*");
-			System.out.println("Seguimos jugando?");
-			System.out.print("Sí (Y) - No (N) --> ");
-			Scanner sc = new Scanner(System.in);
+			restartOrExit();
+
+			if (choice.equals("N")) break;
+		}
+		drawSign("Hasta la próxima!", "=");
+
+	}
+
+	private static void restartOrExit() {
+		System.out.println("Seguimos jugando?");
+		System.out.print("Sí (Y) - No (N) --> ");
+		Scanner sc = new Scanner(System.in);
+		choice = sc.next().toUpperCase();
+		drawLine(70,"*");
+
+		while(!choice.equals("N") && !choice.equals("Y")){
+			System.out.print("Sí (Y) - No (N) --> " );
 			choice = sc.next().toUpperCase();
 			drawLine(70,"*");
 
-			while(!choice.equals("N") && !choice.equals("Y")){
-				System.out.print("Sí (Y) - No (N) --> " );
-				choice = sc.next().toUpperCase();
-				drawLine(70,"*");
-
-
-			}
-			if (choice.equals("N")) break;
 
 		}
-		drawSign("Hasta la próxima!", "=");
 
 	}
 
@@ -164,9 +170,18 @@ public class Ejercicio999TaTeTi {
 	}
 
 	private static void showBoard(String[][] tablero) {
-		for (String[] strings : tablero) {
+		for (String[] strings : tablero) { // Loop for each
 			for (int j = 0; j < tablero.length; j++) {
+				System.out.print("|");
 				System.out.print(strings[j]);
+
+			}
+			System.out.print("|");
+
+			System.out.println();
+			for (int j = 0; j < tablero.length; j++) {
+
+				System.out.print(" ");
 			}
 			System.out.println();
 		}
