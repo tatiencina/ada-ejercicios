@@ -6,25 +6,21 @@ import java.util.Scanner;
  * Un tablero de 3 x 3 matriz [fila] [columna]
  * Jugador uno: ingrese fila, ingrese columna por input
  * Una vez que tengo las coordenadas muestro el tablero X o O 
- * Verificar si la posición está libre y verificar si ganó
+ * Verificar si la posiciï¿½n estï¿½ libre y verificar si ganï¿½
  * Mientras nadie gane, juega el siguiente 
  */
 
 public class Ejercicio999TaTeTi {
 	private static final int ROWS = 3;
 	private static final int COLS = 3;
+	private static final int MAX_TURNS=9;
 
 	public static void main(String[] args) {
 		String[][] tablero = new String[ROWS][COLS];
-		boolean isWinner = false;
 		darBienvenida("TATETI");
-		dibujartablero(tablero);
-		jugar(tablero, isWinner);
-		// Definir quién está jugando
+		startBoard(tablero);
+		playGame(tablero);
 
-		// Pido posicion al jugador 1
-
-		// verifico que la posicion esté vacía
 
 	}
 
@@ -44,82 +40,82 @@ public class Ejercicio999TaTeTi {
 
 	}
 
-	private static void jugar(String tablero[][], boolean isWinner) {
-		int turnCounter = 2;
-		int turn = 0;
-		while (!isWinner(tablero) && turnCounter < 11) { // Mientras no haya ganador o se llenen los casilleros
+	private static void playGame(String[][] tablero) {
+		int turnCounter = 0;
+		int player = 1;
+		while (!isWinner(tablero) && turnCounter < MAX_TURNS) { // Mientras no haya ganador o se llenen los casilleros
 
-			turn = turnCounter % 2;
-			playTurn(turn, tablero);
-			System.out.println("Turno " + (turnCounter - 1));
-			mostrarTablero(tablero);
-//			isWinner = isWinner(tablero);
+			player = turnCounter % 2;
+			playTurn(player, tablero);
+			System.out.println("Turno " + (turnCounter+1)); // Imprimo contador en pantalla para verificar valores
+			showBoard(tablero);
 			turnCounter++; // Acumulador de turnos
 
 		}
 		if (isWinner(tablero)) {
-			System.out.println("GANASTE!!! JUGADOR " + (turn + 1));
+			System.out.println("Felicitaciones Jugador "+ (player + 1) + ". GANASTE!!! ");
 		} else {
-			if (turnCounter == 11) {
+			if (turnCounter == MAX_TURNS) {
 				System.out.println("Se terminaron los turnos, no hay ganador!");
 			}
 		}
 
 	}
 
-	private static void playTurn(int turno, String[][] tablero) {
-		System.out.println("Ingrese fila");
+	private static void playTurn(int player, String[][] tablero) {
+		System.out.println("Jugador " + (player+1));
+		int row = askNextMove("Fila");
+		int col = askNextMove("Columna");
+
+
+		while (tablero[row-1][col-1] == " X " || tablero[row-1][col-1] == " O ") {
+			System.out.println("Esa posicion ya esta ocupada!");
+			row = askNextMove("Fila");
+			col = askNextMove("Columna");
+
+		}
+
+		if (player == 0) {
+			// juega el jugador 1  = X
+			tablero[row-1][col-1] = " X ";
+
+		} else { // juega el jugador 2 = O
+			tablero[row-1][col-1] = " O ";
+		}
+
+	}
+
+	private static int askNextMove(String type) {
 		Scanner sc = new Scanner(System.in);
-		int row = sc.nextInt();
-		System.out.println("Ingrese columna");
-		int col = sc.nextInt();
+		System.out.println("Ingrese " + type);
+		int move = sc.nextInt();
+		while(move<1 || move>3){
+			System.out.println(type + " invÃ¡lida!");
+			System.out.println("Ingrese " + type);
+			move = sc.nextInt();
 
-		while (col < 0 || col > 2 || row < 0 || row > 2) {
-			System.out.println("Posición inválida!");
-			if (row < 0 || row > 2) {
-				System.out.println("Ingrese fila");
-				row = sc.nextInt();
-			} else {
-				System.out.println("Ingrese columna");
-				col = sc.nextInt();
-			}
 		}
+		return move;
 
-		while (tablero[row][col] == " X " || tablero[row][col] == " O ") {
-			System.out.println("Esa posición ya está ocupada!");
-			System.out.println("Ingrese fila");
-			row = sc.nextInt();
-			System.out.println("Ingrese columna");
-			col = sc.nextInt();
-		}
-
-		if (turno == 0) {
-			// juega el jugador 1 X
-			tablero[row][col] = " X ";
-
-		} else { // juega el jugador 2 0
-			tablero[row][col] = " O ";
-		}
 
 	}
 
 	private static boolean isWinner(String tablero[][]) {
 
-		boolean cond1 = (tablero[0][0] == tablero[0][1] && tablero[0][0] == tablero[0][2]);
-		boolean cond2 = (tablero[1][0] == tablero[1][1] && tablero[1][0] == tablero[1][2]);
-		boolean cond3 = (tablero[2][0] == tablero[2][1] && tablero[2][0] == tablero[2][2]);
-		boolean cond4 = (tablero[0][0] == tablero[1][0] && tablero[0][0] == tablero[2][0]);
-		boolean cond5 = (tablero[0][1] == tablero[1][1] && tablero[0][1] == tablero[2][1]);
-		boolean cond6 = (tablero[0][2] == tablero[1][2] && tablero[0][2] == tablero[2][2]);
-		boolean cond7 = (tablero[0][0] == tablero[1][1] && tablero[0][0] == tablero[2][2]);
-		boolean cond8 = (tablero[0][2] == tablero[1][1] && tablero[0][0] == tablero[2][0]);
-		return (cond1 || cond2 || cond3 || cond4 || cond5 || cond6 || cond7 || cond8)
-				&& (tablero[0][0] == "X" || tablero[0][0] == "O");
+		boolean hor1 = (tablero[0][0] == tablero[0][1] && tablero[0][0] == tablero[0][2] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
+		boolean hor2 = (tablero[1][0] == tablero[1][1] && tablero[1][0] == tablero[1][2] && (tablero[1][0] == " X " || tablero[1][0] == " O "));
+		boolean hor3 = (tablero[2][0] == tablero[2][1] && tablero[2][0] == tablero[2][2] && (tablero[2][0] == " X " || tablero[2][0] == " O "));
+		boolean ver1 = (tablero[0][0] == tablero[1][0] && tablero[0][0] == tablero[2][0] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
+		boolean ver2 = (tablero[0][1] == tablero[1][1] && tablero[0][1] == tablero[2][1] && (tablero[0][1] == " X " || tablero[0][1] == " O "));
+		boolean ver3 = (tablero[0][2] == tablero[1][2] && tablero[0][2] == tablero[2][2] && (tablero[0][2] == " X " || tablero[0][2] == " O "));
+		boolean dia1 = (tablero[0][0] == tablero[1][1] && tablero[0][0] == tablero[2][2] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
+		boolean dia2 = (tablero[0][2] == tablero[1][1] && tablero[0][2] == tablero[2][0] && (tablero[0][2] == " X " || tablero[0][2] == " O "));
+		return (hor1 || hor2 || hor3 || ver1 || ver2 || ver3 || dia1 || dia2);
 	}
 
-	private static void dibujartablero(String[][] tablero) {
+	private static void startBoard(String[][] tablero) {
 		for (int i = 0; i < tablero.length; i++) { // filas
-			// relleno de la matriz, todas las posiciones valen 0
+			// relleno de la matriz, todas las posiciones son iguales a " - "
 			for (int j = 0; j < tablero.length; j++) { // columnas
 				tablero[i][j] = " - ";
 
@@ -127,11 +123,11 @@ public class Ejercicio999TaTeTi {
 
 		}
 
-		mostrarTablero(tablero);
+		showBoard(tablero);
 
 	}
 
-	private static void mostrarTablero(String[][] tablero) {
+	private static void showBoard(String[][] tablero) {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
 				System.out.print(tablero[i][j]);
