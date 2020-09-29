@@ -17,21 +17,52 @@ public class Ejercicio999TaTeTi {
 
 	public static void main(String[] args) {
 		String[][] tablero = new String[ROWS][COLS];
-		darBienvenida("TATETI");
-		startBoard(tablero);
-		playGame(tablero);
+		drawSign("TATETI","=");
+		StartGame(tablero);
+
 
 
 	}
 
-	private static void darBienvenida(String mensajeBienvenida) {
-		dibujarDivisor(mensajeBienvenida.length(), "=");
+	private static void StartGame(String[][]tablero) {
+		String choice = "Y";
+		while (continuePlaying(choice)) {
+			startBoard(tablero);
+			playGame(tablero);
+			drawLine(70,"*");
+			System.out.println("Seguimos jugando?");
+			System.out.print("Sí (Y) - No (N) --> ");
+			Scanner sc = new Scanner(System.in);
+			choice = sc.next().toUpperCase();
+			drawLine(70,"*");
+
+			while(!choice.equals("N") && !choice.equals("Y")){
+				System.out.print("Sí (Y) - No (N) --> " );
+				choice = sc.next().toUpperCase();
+				drawLine(70,"*");
+
+
+			}
+			if (choice.equals("N")) break;
+
+		}
+		drawSign("Hasta la próxima!", "=");
+
+	}
+
+	private static boolean continuePlaying(String choice){
+		return (choice.equals("Y"));
+
+	}
+
+	private static void drawSign(String mensajeBienvenida, String symbol) {
+		drawLine(mensajeBienvenida.length(), symbol);
 		System.out.println(mensajeBienvenida.toUpperCase());
-		dibujarDivisor(mensajeBienvenida.length(), "=");
+		drawLine(mensajeBienvenida.length(), symbol);
 		System.out.println();
 	}
 
-	private static void dibujarDivisor(int longitud, String simbolo) {
+	private static void drawLine(int longitud, String simbolo) {
 		for (int i = 0; i < longitud; i++) {
 			System.out.print(simbolo);
 
@@ -53,23 +84,27 @@ public class Ejercicio999TaTeTi {
 
 		}
 		if (isWinner(tablero)) {
-			System.out.println("Felicitaciones Jugador "+ (player + 1) + ". GANASTE!!! ");
+			drawSign("El jugador " + (player+1) + " gana!", "*");
 		} else {
 			if (turnCounter == MAX_TURNS) {
-				System.out.println("Se terminaron los turnos, no hay ganador!");
+				drawLine(70,"-");
+				System.out.println("Se terminaron los turnos, no hay ganador! =(");
+				drawLine(70,"-");
 			}
 		}
 
 	}
 
 	private static void playTurn(int player, String[][] tablero) {
-		System.out.println("Jugador " + (player+1));
+		System.out.println("Turno del Jugador " + (player+1));
 		int row = askNextMove("Fila");
 		int col = askNextMove("Columna");
 
 
-		while (tablero[row-1][col-1] == " X " || tablero[row-1][col-1] == " O ") {
-			System.out.println("Esa posicion ya esta ocupada!");
+		while (tablero[row-1][col-1].equals(" X ") || tablero[row-1][col-1].equals(" O ")) {
+			System.out.println("Esa posición ya esta ocupada!");
+			drawLine(70,"-");
+			System.out.println("Por favor, ingresá otra.");
 			row = askNextMove("Fila");
 			col = askNextMove("Columna");
 
@@ -87,11 +122,11 @@ public class Ejercicio999TaTeTi {
 
 	private static int askNextMove(String type) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Ingrese " + type);
+		System.out.print("Ingrese " + type + " : ");
 		int move = sc.nextInt();
 		while(move<1 || move>3){
 			System.out.println(type + " inválida!");
-			System.out.println("Ingrese " + type);
+			System.out.print("Ingrese " + type + " : ");
 			move = sc.nextInt();
 
 		}
@@ -122,15 +157,16 @@ public class Ejercicio999TaTeTi {
 			}
 
 		}
-
+		drawSign("A jugar!", ".");
 		showBoard(tablero);
+		System.out.println();
 
 	}
 
 	private static void showBoard(String[][] tablero) {
-		for (int i = 0; i < tablero.length; i++) {
+		for (String[] strings : tablero) {
 			for (int j = 0; j < tablero.length; j++) {
-				System.out.print(tablero[i][j]);
+				System.out.print(strings[j]);
 			}
 			System.out.println();
 		}
