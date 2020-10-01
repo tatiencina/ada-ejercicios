@@ -61,10 +61,10 @@ public class Ejercicio999TaTeTi {
 
 	}
 
-	private static void drawSign(String mensajeBienvenida, String symbol) {
-		drawLine(mensajeBienvenida.length(), symbol);
-		System.out.println(mensajeBienvenida.toUpperCase());
-		drawLine(mensajeBienvenida.length(), symbol);
+	private static void drawSign(String initialMessage, String symbol) {
+		drawLine(initialMessage.length(), symbol);
+		System.out.println(initialMessage.toUpperCase());
+		drawLine(initialMessage.length(), symbol);
 		System.out.println();
 	}
 
