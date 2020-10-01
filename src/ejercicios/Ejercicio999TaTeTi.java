@@ -6,8 +6,15 @@ import java.util.Scanner;
  * Un tablero de 3 x 3 matriz [fila] [columna]
  * Jugador uno: ingrese fila, ingrese columna por input
  * Una vez que tengo las coordenadas muestro el tablero X o O 
- * Verificar si la posici�n est� libre y verificar si gan�
- * Mientras nadie gane, juega el siguiente 
+ * Verificar si la posición está libre y verificar si ganó
+ * Mientras nadie gane, juega el siguiente
+ *
+ * Incluye validaciones para:
+ * - posición válida
+ * - posición no ocupada
+ * - hay un ganador
+ * - se agotaron los turnos
+ * - continuar jugando o finalizar juego
  */
 
 public class Ejercicio999TaTeTi {
@@ -19,13 +26,13 @@ public class Ejercicio999TaTeTi {
 	public static void main(String[] args) {
 		String[][] tablero = new String[ROWS][COLS];
 		drawSign("TATETI","=");
-		StartGame(tablero);
+		startGame(tablero);
 
 
 
 	}
 
-	private static void StartGame(String[][]tablero) {
+	private static void startGame(String[][]tablero) {
 
 		while (continuePlaying(choice)) {
 			startBoard(tablero);
@@ -142,13 +149,15 @@ public class Ejercicio999TaTeTi {
 	}
 
 	private static boolean isWinner(String tablero[][]) {
-
+		// filas
 		boolean hor1 = (tablero[0][0] == tablero[0][1] && tablero[0][0] == tablero[0][2] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
 		boolean hor2 = (tablero[1][0] == tablero[1][1] && tablero[1][0] == tablero[1][2] && (tablero[1][0] == " X " || tablero[1][0] == " O "));
 		boolean hor3 = (tablero[2][0] == tablero[2][1] && tablero[2][0] == tablero[2][2] && (tablero[2][0] == " X " || tablero[2][0] == " O "));
+		// columnas
 		boolean ver1 = (tablero[0][0] == tablero[1][0] && tablero[0][0] == tablero[2][0] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
 		boolean ver2 = (tablero[0][1] == tablero[1][1] && tablero[0][1] == tablero[2][1] && (tablero[0][1] == " X " || tablero[0][1] == " O "));
 		boolean ver3 = (tablero[0][2] == tablero[1][2] && tablero[0][2] == tablero[2][2] && (tablero[0][2] == " X " || tablero[0][2] == " O "));
+		// diagonales
 		boolean dia1 = (tablero[0][0] == tablero[1][1] && tablero[0][0] == tablero[2][2] && (tablero[0][0] == " X " || tablero[0][0] == " O "));
 		boolean dia2 = (tablero[0][2] == tablero[1][1] && tablero[0][2] == tablero[2][0] && (tablero[0][2] == " X " || tablero[0][2] == " O "));
 		return (hor1 || hor2 || hor3 || ver1 || ver2 || ver3 || dia1 || dia2);
