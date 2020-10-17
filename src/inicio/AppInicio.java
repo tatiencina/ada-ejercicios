@@ -1,5 +1,6 @@
 package inicio;
 
+import inicio.clase1.Bicicleta;
 import inicio.clase1.Usuario;
 
 public class AppInicio {
@@ -41,11 +42,30 @@ public class AppInicio {
 		 */
 
 		Usuario user1 = null;
-		System.out.println("El valor del usuario es: " + user1);
+		/*System.out.println("El valor del usuario es: " + user1);
 
 		user1 = new Usuario(); // la vriable user 1 pasa de tener valor null a tener
 		// el valor de un objeto que cree user1.test();
 
-		System.out.println(user1);
+		System.out.println(user1);*/
+
+		Bicicleta bici = new Bicicleta();
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.acelerar(10);
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.frenar(20);
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.frenar(3);
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.detener();
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.frenar(4);
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.detener();
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+		bici.setVelocidad(1);
+		System.out.println("Velocidad actual: " + bici.getVelocidad());
+
+
 	}
 }
