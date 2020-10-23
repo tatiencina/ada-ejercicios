@@ -41,4 +41,9 @@ public class Cheque extends MedioDePago {
         // verificar numero
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "Numero: " + numero + ". Librador" + librador +". Banco: " + banco;
+    }
 }

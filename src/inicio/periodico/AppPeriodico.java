@@ -20,7 +20,6 @@ public class AppPeriodico {
 
     public static void main(String[] args) {
         int seleccionMenu = mostrarMenu();
-        ingresarTipoPublicacion();
         caclularPrecioPublicacion(seleccionMenu);
 
     }
@@ -38,38 +37,39 @@ public class AppPeriodico {
         Publicacion publicacion = null;
         int tamano;
         int totalPublicaciones = 0;
+        float totalRecaudado = 0;
 
-            while (totalPublicaciones < MAX_PUBLICACIONES) {
-                while (seleccionMenu != 3) {
+        while (totalPublicaciones < MAX_PUBLICACIONES && seleccionMenu != 3) {
+           // while (seleccionMenu != 3 ) {
+                tamano = Publicacion.solicitarTamano();
                 switch (seleccionMenu) {
                     case 1:
-                        tamano = publicacion.solicitarTamano();
-                        publicacion = new Publicidad(tamano);
+                        String marca = Publicidad.ingresarAnunciante();
+                        publicacion = new Publicidad(tamano,marca);
                         break;
                     case 2:
-                        tamano = publicacion.solicitarTamano();
                         publicacion = new Nota(tamano);
                         //Carta.enviarCarta();
                         break;
 
                     default:
                         throw new IllegalStateException("Unexpected value: " + seleccionMenu);
-                }
 
-                publicacion.calcularPrecio();
+                }
+                totalRecaudado += publicacion.calcularPrecio();
                 System.out.println();
-                totalPublicaciones += 1;
+                totalPublicaciones ++;
                 System.out.println("El total de publicaciones es: " + totalPublicaciones);
                 Sign.drawLine(70, " ");
+                // if
                 seleccionMenu = mostrarMenu();
-            }
-            Sign.drawSign("Hasta la proxima!", "*");
-
+           // }
         }
+        System.out.println("El total recaudado es: $" + totalRecaudado);
+        Sign.drawSign("Hasta la proxima!", "*");
+
+
     }
 
 
-
-    private static void ingresarTipoPublicacion() {
-    }
 }

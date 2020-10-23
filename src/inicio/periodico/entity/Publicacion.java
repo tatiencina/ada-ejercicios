@@ -7,7 +7,7 @@ public abstract class Publicacion {
     //public static float precio;
     public static int tamano;
 // método abstracto
-    public abstract void calcularPrecio();
+    public abstract float calcularPrecio();
     // getters y setters
   /*  public static float getPrecio() {
         return precio;

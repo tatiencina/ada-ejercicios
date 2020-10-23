@@ -73,4 +73,10 @@ public class TarjetaDeCredito extends MedioDePago{
         // validar importe
         return resultado;
     }
+
+    @Override
+    public String toString(){
+        return "Numero: " + numero + " Vencimiento" + vencimiento;
+    }
+
 }

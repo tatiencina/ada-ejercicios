@@ -11,4 +11,5 @@ public class Efectivo extends MedioDePago{
     public boolean validar() {
         return true;
     }
+
 }

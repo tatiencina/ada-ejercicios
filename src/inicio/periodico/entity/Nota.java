@@ -18,12 +18,12 @@ public class Nota extends Publicacion {
     }
 
     @Override
-    public void calcularPrecio() {
+    public float calcularPrecio() {
         seccion = solicitarSeccion();
         float recargoSeccion = calcularRecargo(seccion);
         float precioFinal = (tamano*PRECIO_BASE_NOTA)*recargoSeccion;
         System.out.println("El precio final es " + precioFinal);
-
+        return precioFinal;
     }
 
     private float calcularRecargo(int seccion) {
