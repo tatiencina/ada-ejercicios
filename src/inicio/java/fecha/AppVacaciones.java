@@ -2,6 +2,7 @@ package inicio.java.fecha;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -60,6 +61,11 @@ public class AppVacaciones {
 
         }
     }
+    private boolean esMayorEdad(Date fechaNacimiento){
+        Calendar hoy = Calendar.getInstance();
+        hoy.add(Calendar.YEAR, -18);
+        return fechaNacimiento.before(hoy.getTime());
 
+    }
 
 }
