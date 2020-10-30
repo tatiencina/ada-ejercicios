@@ -30,7 +30,6 @@ public class AppExpensas {
         calcularRecargo(diferencia,pago);
 
 
-
     }
 
     private static float ingresarPago() {
