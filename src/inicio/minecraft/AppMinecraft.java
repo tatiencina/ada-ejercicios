@@ -37,7 +37,6 @@ public class AppMinecraft {
                     revolver.disparar(numTiros, municiones);
                     objetivo = pedirObjetivo();
                     revolver.ejecutar(objetivo);
-
                     break;
                 case 3:
                     ArcoFlecha arcoyflecha = new ArcoFlecha();
@@ -45,7 +44,6 @@ public class AppMinecraft {
                     numTiros = ingresarTiros("flechas");
                     arcoyflecha.disparar(numTiros, municiones);
                     break;
-
                 default:
                     throw new IllegalStateException("Unexpected value: " + seleccionMenu);
 
